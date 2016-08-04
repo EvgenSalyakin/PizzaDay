@@ -21,10 +21,7 @@ export default class FacebookButton extends Component {
                 //console.log('log')
                 //this.setState({curUser: Meteor.user()});
             }
-
-
         });
-
     }
 
     submitLogOut(event) {
@@ -36,8 +33,6 @@ export default class FacebookButton extends Component {
                 throw new Meteor.Error("Logout failed");
             }
         });
-
-
     }
 
     render() {
@@ -46,7 +41,8 @@ export default class FacebookButton extends Component {
                 {!this.state.curUser ?
                     (
                         <span>Log in:
-                        <batton className="btn btn-warning marg" onClick={this.submitLogIn.bind(this)}>Connect FB</batton>
+                        <batton className="btn btn-warning marg"
+                                onClick={this.submitLogIn.bind(this)}>Connect FB</batton>
                         </span>
                     )
                     :
