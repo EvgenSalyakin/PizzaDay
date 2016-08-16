@@ -1,6 +1,3 @@
-import { Meteor } from 'meteor/meteor';
-import '../imports/api/groups.js';
-
-Meteor.startup(() => {
-  // code to run on server at startup
-});
+import './publications';
+import './methods';
+import './accounts';
