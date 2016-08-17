@@ -8,14 +8,16 @@ ServiceConfiguration.configurations.remove({
 ServiceConfiguration.configurations.insert({
     service: 'facebook',
     appId: '948169941948479',
-    secret: '9e0fd15128a345c9a697a81ae0a88aa9'
+    secret: '9e0fd15128a345c9a697a81ae0a88aa9',
+    loginStyle: 'redirect'
 });
 
 ServiceConfiguration.configurations.update(
     { service: "facebook" },
     { $set: {
         "appId": "948169941948479",
-        "secret": "9e0fd15128a345c9a697a81ae0a88aa9"}
+        "secret": "9e0fd15128a345c9a697a81ae0a88aa9",
+        "loginStyle": "redirect"}
     },
     { upsert: true }
 );

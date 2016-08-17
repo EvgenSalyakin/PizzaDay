@@ -1,7 +1,7 @@
 import Layout from '../imports/layout/Layout';
 
 import App from '../imports/ui/App';
-import FacebookButton from '../imports/components/FacebookButton'
+import FacebookButton from '../imports/ui/FacebookButton'
 
 FlowRouter.route('/', {
     //name: "Start",

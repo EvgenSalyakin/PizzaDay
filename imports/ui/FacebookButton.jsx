@@ -1,34 +1,39 @@
-import React from 'react';
+import React, {Component} from 'react';
+import { Meteor } from 'meteor/meteor';
 
-export default class FacebookButton extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            loggingIn: !(!Meteor.loggingIn() && !Meteor.user()),
-            curUser: Meteor.user()
-        };
-    }
+export default class FacebookButton extends Component {
+    // constructor(props) {
+    //     super(props);
+    //
+    //     // this.state = {
+    //     //     loggingIn: !(!Meteor.loggingIn() && !Meteor.user()),
+    //     //     curUser: Meteor.user()
+    //     // };
+    // }
 
     onSubmit(event) {
         event.preventDefault();
         if (!Meteor.loggingIn() && !Meteor.user()) {
             Meteor.loginWithFacebook({
-                requestPermissions: ['user_friends', 'public_profile', 'email']
+                //requestPermissions: ['user_friends', 'public_profile', 'email'],
+                //redirectUrl: '/'
             }, function (err) {
                 if (err) {
-                    this.setState({
-                        curUser: null,
-                        loggingIn: false
-                    });
-                    alert('Произошла ошибка, повторите попытку');
+                    // this.setState({
+                    //     curUser: null,
+                    //     loggingIn: false
+                    // });
+                    console.log('Произошла ошибка при авторизации Facebook!!!');
                 }
                 else {
                     //console.log('log')
-                    this.setState({
-                        curUser: Meteor.user(),
-                        loggingIn: true
-                    });
+                    // this.setState({
+                    //     curUser: Meteor.user(),
+                    //     loggingIn: true
+                    // });
+                    //window.location.reload(true);
+                    //FlowRouter.go('/home');
+                    //event.render(<button id="render" className="btn btn-warning marg" type="submit" value="Submit">Log out</button>, document.getElementById('FBbutton'));
                 }
             });
         } else {
@@ -37,26 +42,28 @@ export default class FacebookButton extends React.Component {
                     throw new Meteor.Error("Logout failed");
                 }
             });
-            this.setState({
-                curUser: null,
-                loggingIn: false
-            });
+            // this.setState({
+            //     curUser: null,
+            //     loggingIn: false
+            // });
+            //FlowRouter.go('/');
         }
         // this.setState({
         //     loggingIn: !this.state.loggingIn,
         //    // curUser: Meteor.user()
         // });
+        //FlowRouter.go('/home');
     }
 
     render() {
         let textInput;// = //this.state.loggingIn?('Log out'):('Log in');
         let textWelcome;
-        if (this.state.loggingIn) {    //(!Meteor.loggingIn() && !Meteor.user()) {
-            textWelcome = 'Welcome ';//+Meteor.user().profile.name;
-            textInput = 'Log out';
-        } else {
+        if (!Meteor.loggingIn() && !Meteor.user()) {    //(!Meteor.loggingIn() && !Meteor.user()) {(this.state.loggingIn)
             textWelcome = 'Not authorized';
             textInput = 'Log in';
+        } else {
+            textWelcome = 'Welcome ';//+this.props.currentUser;//Meteor.user().services.facebook.name;
+            textInput = 'Log out';
         }
         //let textWelcome = this.state.loggingIn?(Meteor.user().services.facebook.name):('Not authorized');
         return (
@@ -78,7 +85,7 @@ export default class FacebookButton extends React.Component {
                 */}
                 <form onSubmit={this.onSubmit.bind(this)}>
                     {textWelcome}:
-                    <button className="btn btn-warning marg" type="submit" value="Submit">{textInput}</button>
+                    <button id='fbbutton' className="btn btn-warning marg" type="submit" value="Submit">{textInput}</button>
                 </form>
             </div>
         );

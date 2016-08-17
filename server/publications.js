@@ -97,88 +97,90 @@ Meteor.startup(() => {
     // });
 
     // Accessing this.userId inside a publication
-    Meteor.publish('users.private', function() {
-        if (!this.userId) {
-            return this.ready();
-        }
+    // Meteor.publish('users', function() {
+    //
+    //     return Meteor.users.find();
+    //     // if (!this.userId) {
+    //     //     return this.ready();
+    //     // }
+    //     //
+    //     // return Users.find({
+    //     //     userId: this.userId
+    //     // }, {
+    //     //     fields: Users.publicFields
+    //     // });
+    // });
 
-        return Users.find({
-            userId: this.userId
-        }, {
-            fields: Users.publicFields
-        });
-    });
-
-    Meteor.publish('customers.list', function (ownerId) {
-        const selector = {ownerId};
-        const options = {
-            fields: {_id: 1, name: 1},
-            sort: {name: 1},
-        };
-
-        return Customers.find(selector, options);
-    });
-
-    Meteor.publish('customers.single', function (customerId) {
-        check(customerId, String);
-        const selector = {_id: customerId};
-        return Customers.find(selector);
-    });
-
-
-    //Meteor.publish('orders', function (ownerId) {
-    Meteor.publish('orders', function () {
-        //check(ownerId, String);
-        //const selector = {ownerId};
-        // const options = {
-        //     fields: {_id: 1, owner: 1, status:1, createdAt:1},
-        //     sort: {createdAt: -1},
-        // };
-        //
-        // return Orders.find(selector, options);
-
-        return Orders.find();
-    });
-
-    Meteor.publish('orders.single', function (orderId) {
-        check(orderId, String);
-        const selector = {_id: orderId};
-        return Orders.find(selector);
-    });
+    // Meteor.publish('customers.list', function (ownerId) {
+    //     const selector = {ownerId};
+    //     const options = {
+    //         fields: {_id: 1, name: 1},
+    //         sort: {name: 1},
+    //     };
+    //
+    //     return Customers.find(selector, options);
+    // });
+    //
+    // Meteor.publish('customers.single', function (customerId) {
+    //     check(customerId, String);
+    //     const selector = {_id: customerId};
+    //     return Customers.find(selector);
+    // });
 
 
-    Meteor.publish('orderLines.list', function (orderId) {
-        check(orderId, String);
-        const selector = {orderId};
-        const options = {
-            fields: {_id: 1, customer: 1},
-            sort: {createdAt: -1},
-        };
-
-        return OrderLines.find(selector, options);
-    });
-
-    Meteor.publish('orderLines.single', function (orderLinesId) {
-        check(orderLinesId, String);
-        const selector = {_id: orderLinesId};
-        return OrderLines.find(selector);
-    });
-
-    Meteor.publish('discounts.list', function (ownerId) {
-        check(ownerId, String);
-        const selector = {ownerId};
-        const options = {
-            fields: {_id: 1, customer: 1},
-            sort: {createdAt: -1},
-        };
-
-        return Discounts.find(selector, options);
-    });
-
-    Meteor.publish('discounts.single', function (DiscountId) {
-        check(DiscountId, String);
-        const selector = {_id: DiscountId};
-        return Discounts.find(selector);
-    });
+    // //Meteor.publish('orders', function (ownerId) {
+    // Meteor.publish('orders', function () {
+    //     //check(ownerId, String);
+    //     //const selector = {ownerId};
+    //     // const options = {
+    //     //     fields: {_id: 1, owner: 1, status:1, createdAt:1},
+    //     //     sort: {createdAt: -1},
+    //     // };
+    //     //
+    //     // return Orders.find(selector, options);
+    //
+    //     return Orders.find();
+    // });
+    //
+    // Meteor.publish('orders.single', function (orderId) {
+    //     check(orderId, String);
+    //     const selector = {_id: orderId};
+    //     return Orders.find(selector);
+    // });
+    //
+    //
+    // Meteor.publish('orderLines.list', function (orderId) {
+    //     check(orderId, String);
+    //     const selector = {orderId};
+    //     const options = {
+    //         fields: {_id: 1, customer: 1},
+    //         sort: {createdAt: -1},
+    //     };
+    //
+    //     return OrderLines.find(selector, options);
+    // });
+    //
+    // Meteor.publish('orderLines.single', function (orderLinesId) {
+    //     check(orderLinesId, String);
+    //     const selector = {_id: orderLinesId};
+    //     return OrderLines.find(selector);
+    // });
+    //
+    // Meteor.publish('discounts.list', function (ownerId) {
+    //     check(ownerId, String);
+    //     const selector = {ownerId};
+    //     const options = {
+    //         fields: {_id: 1, customer: 1},
+    //         sort: {createdAt: -1},
+    //     };
+    //
+    //     return Discounts.find(selector, options);
+    // });
+    //
+    // Meteor.publish('discounts.single', function (DiscountId) {
+    //     check(DiscountId, String);
+    //     const selector = {_id: DiscountId};
+    //     return Discounts.find(selector);
+    // });
 
 });
