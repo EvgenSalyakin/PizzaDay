@@ -1,4 +1,5 @@
 # Pizza Day
+
   Introduction
 You are software engineer in small development company. Every Wednesday your teammates
 order pizza delivery in Local Restaurant. Usually there is about 10-15 order items (pizzas, juice
@@ -54,3 +55,5 @@ source code should be available on github.com
 
   Mockups
 No mockaps available, use your imagination :)
+
+Original task version: ./public/PizzaDay_JSSolutions_test_assignment.pdf
