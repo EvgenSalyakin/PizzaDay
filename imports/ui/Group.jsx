@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
-import { Groups } from '../api/groups.js';
+import { Groups } from '../../lib/collections';
 
 // Task component - represents a single todo item
 export default class Group extends Component {

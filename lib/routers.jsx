@@ -1,14 +1,14 @@
 import Layout from '../imports/layout/Layout';
 
 import App from '../imports/ui/App';
-import FacebookButton from '../imports/ui/FacebookButton'
+//import FacebookButton from '../imports/ui/FacebookButton'
 
 FlowRouter.route('/', {
-    //name: "Start",
+    name: "Start",
     action: function() {
         ReactLayout.render(Layout, {
             content: <App/>,
-            fbContent: <FacebookButton/>
+            //fbContent: <FacebookButton/>
         });
     }
 });
